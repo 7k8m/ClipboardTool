@@ -34,14 +34,19 @@
             // 
             // _txtBox_clipboardContent
             // 
+            this._txtBox_clipboardContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._txtBox_clipboardContent.Location = new System.Drawing.Point(13, 13);
             this._txtBox_clipboardContent.Multiline = true;
             this._txtBox_clipboardContent.Name = "_txtBox_clipboardContent";
+            this._txtBox_clipboardContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._txtBox_clipboardContent.Size = new System.Drawing.Size(775, 345);
             this._txtBox_clipboardContent.TabIndex = 0;
             // 
             // _btn_readFromClipboard
             // 
+            this._btn_readFromClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btn_readFromClipboard.Location = new System.Drawing.Point(22, 380);
             this._btn_readFromClipboard.Name = "_btn_readFromClipboard";
             this._btn_readFromClipboard.Size = new System.Drawing.Size(321, 46);
