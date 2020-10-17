@@ -63,7 +63,7 @@
             this.Controls.Add(this._btn_readFromClipboard);
             this.Controls.Add(this._txtBox_clipboardContent);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "ClipboardTool";
             this.ResumeLayout(false);
             this.PerformLayout();
 
