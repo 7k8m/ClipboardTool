@@ -25,7 +25,11 @@ namespace ClipboardTool
 
         private static String ReadAsString(IDataObject clipboardData)
         {
-            if (clipboardData.GetDataPresent(DataFormats.Html))
+            if (clipboardData.GetDataPresent(DataFormats.CommaSeparatedValue))
+            {
+                return (String) clipboardData.GetData(DataFormats.UnicodeText);
+            }
+            else if (clipboardData.GetDataPresent(DataFormats.Html))
             {
                 return (String) clipboardData.GetData(DataFormats.Html);
             }
