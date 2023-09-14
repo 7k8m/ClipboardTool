@@ -27,7 +27,7 @@ namespace ClipboardTool
         /// <param name="e"></param>
         private void _btn_readFromClipboard_Click(object sender, EventArgs e)
         {
-            _txtBox_clipboardContent.Text = 
+            _txtBox_clipboardContent.Text =
                 ReadAsString(Clipboard.GetDataObject());
         }
 
@@ -41,17 +41,17 @@ namespace ClipboardTool
             if (clipboardData.GetDataPresent(DataFormats.CommaSeparatedValue))
             {
                 //CSV
-                return (String) clipboardData.GetData(DataFormats.UnicodeText);
+                return (String)clipboardData.GetData(DataFormats.UnicodeText);
             }
             else if (clipboardData.GetDataPresent(DataFormats.Html))
             {
                 //HTML
-                return (String) clipboardData.GetData(DataFormats.Html);
+                return (String)clipboardData.GetData(DataFormats.Html);
             }
-            else if(clipboardData.GetDataPresent(DataFormats.UnicodeText))
+            else if (clipboardData.GetDataPresent(DataFormats.UnicodeText))
             {
                 //UnicodeText as a kind of fallback
-                return (String) clipboardData.GetData(DataFormats.UnicodeText);
+                return (String)clipboardData.GetData(DataFormats.UnicodeText);
             }
 
             // Empty String for data which can not handled as UnicodeText

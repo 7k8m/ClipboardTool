@@ -28,45 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._txtBox_clipboardContent = new System.Windows.Forms.TextBox();
-            this._btn_readFromClipboard = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            _txtBox_clipboardContent = new System.Windows.Forms.TextBox();
+            _btn_readFromClipboard = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // _txtBox_clipboardContent
             // 
-            this._txtBox_clipboardContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._txtBox_clipboardContent.Location = new System.Drawing.Point(13, 13);
-            this._txtBox_clipboardContent.Multiline = true;
-            this._txtBox_clipboardContent.Name = "_txtBox_clipboardContent";
-            this._txtBox_clipboardContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._txtBox_clipboardContent.Size = new System.Drawing.Size(775, 345);
-            this._txtBox_clipboardContent.TabIndex = 0;
+            _txtBox_clipboardContent.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            _txtBox_clipboardContent.Location = new System.Drawing.Point(7, 6);
+            _txtBox_clipboardContent.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            _txtBox_clipboardContent.Multiline = true;
+            _txtBox_clipboardContent.Name = "_txtBox_clipboardContent";
+            _txtBox_clipboardContent.ReadOnly = true;
+            _txtBox_clipboardContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            _txtBox_clipboardContent.Size = new System.Drawing.Size(419, 164);
+            _txtBox_clipboardContent.TabIndex = 0;
             // 
             // _btn_readFromClipboard
             // 
-            this._btn_readFromClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._btn_readFromClipboard.Location = new System.Drawing.Point(22, 380);
-            this._btn_readFromClipboard.Name = "_btn_readFromClipboard";
-            this._btn_readFromClipboard.Size = new System.Drawing.Size(321, 46);
-            this._btn_readFromClipboard.TabIndex = 1;
-            this._btn_readFromClipboard.Text = "Read From Clipboard";
-            this._btn_readFromClipboard.UseVisualStyleBackColor = true;
-            this._btn_readFromClipboard.Click += new System.EventHandler(this._btn_readFromClipboard_Click);
+            _btn_readFromClipboard.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            _btn_readFromClipboard.Location = new System.Drawing.Point(12, 178);
+            _btn_readFromClipboard.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            _btn_readFromClipboard.Name = "_btn_readFromClipboard";
+            _btn_readFromClipboard.Size = new System.Drawing.Size(173, 22);
+            _btn_readFromClipboard.TabIndex = 1;
+            _btn_readFromClipboard.Text = "Read From Clipboard";
+            _btn_readFromClipboard.UseVisualStyleBackColor = true;
+            _btn_readFromClipboard.Click += _btn_readFromClipboard_Click;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this._btn_readFromClipboard);
-            this.Controls.Add(this._txtBox_clipboardContent);
-            this.Name = "MainForm";
-            this.Text = "ClipboardTool";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(431, 211);
+            Controls.Add(_btn_readFromClipboard);
+            Controls.Add(_txtBox_clipboardContent);
+            Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            Name = "MainForm";
+            Text = "ClipboardTool";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
