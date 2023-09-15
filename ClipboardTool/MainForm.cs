@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClipboardTool
 {
@@ -29,12 +30,17 @@ namespace ClipboardTool
         // P/Invoke constants
         private const int WM_SYSCOMMAND = 0x112;
         private const int MF_STRING = 0x0;
-        private const int MF_SEPARATOR = 0x800;
+        private const int MF_SEPARATOR = 0x800;        
+        private const int MF_CHECKED = 0x00000008;
+        private const int MF_UNCHECKED = 0x00000000;
+
         // P/Invoke declarations
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool AppendMenu(IntPtr hMenu, int uFlags, int uIDNewItem, string lpNewItem);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int CheckMenuItem(IntPtr hMenu, int uIDCheckItem, int uCheck);
         // ID for the AlwaysTop item on the system menu
         private int SYSMENU_ALWAYS_TOP = 0x1;
         #endregion
@@ -74,8 +80,12 @@ namespace ClipboardTool
             if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_ALWAYS_TOP))
             {
                 this.TopMost = !this.TopMost;
+                CheckMenuItem(
+                    GetSystemMenu(this.Handle, false), 
+                    SYSMENU_ALWAYS_TOP, 
+                    this.TopMost ? MF_CHECKED : MF_UNCHECKED
+                );
             }
-
         }
         #endregion
 
