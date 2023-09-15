@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace ClipboardTool
 {
@@ -24,6 +25,20 @@ namespace ClipboardTool
         /// </summary>
         private Timer _timer = new Timer();
 
+        #region Constants and methods for customizing System Menu
+        // P/Invoke constants
+        private const int WM_SYSCOMMAND = 0x112;
+        private const int MF_STRING = 0x0;
+        private const int MF_SEPARATOR = 0x800;
+        // P/Invoke declarations
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool AppendMenu(IntPtr hMenu, int uFlags, int uIDNewItem, string lpNewItem);
+        // ID for the AlwaysTop item on the system menu
+        private int SYSMENU_ALWAYS_TOP = 0x1;
+        #endregion
+
         public MainForm()
         {
             InitializeComponent();
@@ -40,6 +55,29 @@ namespace ClipboardTool
             _timer.Start();
 
         }
+
+        #region Customizing System Menu
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            // Get a handle to a copy of this form's system (window) menu
+            IntPtr hSysMenu = GetSystemMenu(this.Handle, false);
+            // Add a separator
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+            // Add the Always top menu item
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_ALWAYS_TOP, "&Always top");
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_ALWAYS_TOP))
+            {
+                this.TopMost = !this.TopMost;
+            }
+
+        }
+        #endregion
 
         /// <summary>
         /// Event handler for the timer.
