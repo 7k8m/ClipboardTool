@@ -14,6 +14,9 @@ namespace ClipboardTool
     /// </summary>
     public partial class MainForm : Form
     {
+
+        private static readonly String AUTOFOMRAT = "Auto";
+
         /// <summary>
         /// Timer to update shown clipboard content.
         /// </summary>
@@ -24,7 +27,7 @@ namespace ClipboardTool
             InitializeComponent();
 
             // Initialize items in the combobox
-            _cbx_format.Items.Add("Auto");
+            _cbx_format.Items.Add(AUTOFOMRAT);
             _cbx_format.Items.Add(DataFormats.Html);
             _cbx_format.Items.Add(DataFormats.UnicodeText);
             _cbx_format.SelectedIndex = 0;
@@ -44,7 +47,7 @@ namespace ClipboardTool
         private void timer_Tick(object sender, EventArgs e)
         {
             var clipboardData = Clipboard.GetDataObject();
-            if (_cbx_format.Text == "Auto")
+            if (_cbx_format.Text == AUTOFOMRAT)
                 _txtBox_clipboardContent.Text = ReadAsStringByDefault(clipboardData);
             else if (_cbx_format.Text == DataFormats.Html)
                 _txtBox_clipboardContent.Text = ReadAsFormat(clipboardData, DataFormats.Html);
