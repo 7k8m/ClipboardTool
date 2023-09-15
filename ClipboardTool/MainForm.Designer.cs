@@ -57,6 +57,7 @@
             // 
             // _lbl_readAs
             // 
+            _lbl_readAs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             _lbl_readAs.AutoSize = true;
             _lbl_readAs.Location = new System.Drawing.Point(430, 401);
             _lbl_readAs.Name = "_lbl_readAs";
