@@ -20,14 +20,28 @@ namespace ClipboardTool
         public MainForm()
         {
             InitializeComponent();
+
+            _cbx_format.Items.Add("Auto");
+            _cbx_format.Items.Add(DataFormats.Html);
+            _cbx_format.Items.Add(DataFormats.UnicodeText);
+            _cbx_format.SelectedIndex = 0;
+
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(timer_Tick);
             _timer.Start();
+
+
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            _txtBox_clipboardContent.Text = ReadAsString(Clipboard.GetDataObject());
+            var clipboardData = Clipboard.GetDataObject();
+            if (_cbx_format.Text == "Auto")
+                _txtBox_clipboardContent.Text = ReadAsStringByDefault(clipboardData);
+            else if (_cbx_format.Text == DataFormats.Html)
+                _txtBox_clipboardContent.Text = ReadAsFormat(clipboardData, DataFormats.Html);
+            else if (_cbx_format.Text == DataFormats.UnicodeText)
+                _txtBox_clipboardContent.Text = (String)clipboardData.GetData(DataFormats.UnicodeText);
         }
 
         /// <summary>
@@ -35,7 +49,7 @@ namespace ClipboardTool
         /// </summary>
         /// <param name="clipboardData"></param>
         /// <returns></returns>
-        private static String ReadAsString(IDataObject clipboardData)
+        private static String ReadAsStringByDefault(IDataObject clipboardData)
         {
             if (clipboardData.GetDataPresent(DataFormats.CommaSeparatedValue))
             {
@@ -57,5 +71,21 @@ namespace ClipboardTool
             return "";
 
         }
+
+        /// <summary>
+        /// Read the clipboard data as string for a specific format.
+        /// </summary>
+        /// <param name="clipboardData"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        private static String ReadAsFormat(IDataObject clipboardData, String format)
+        {
+            if (clipboardData.GetDataPresent(format))
+            {
+                return (String)clipboardData.GetData(format);
+            }
+            return "";
+        }
+
     }
 }
