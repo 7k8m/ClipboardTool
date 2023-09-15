@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClipboardTool
@@ -15,20 +14,20 @@ namespace ClipboardTool
     /// </summary>
     public partial class MainForm : Form
     {
+
+        private Timer _timer = new Timer();
+
         public MainForm()
         {
             InitializeComponent();
+            _timer.Interval = 1000;
+            _timer.Tick += new EventHandler(timer_Tick);
+            _timer.Start();
         }
 
-        /// <summary>
-        /// Read From Clipboard Button Clicked.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void _btn_readFromClipboard_Click(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
-            _txtBox_clipboardContent.Text =
-                ReadAsString(Clipboard.GetDataObject());
+            _txtBox_clipboardContent.Text = ReadAsString(Clipboard.GetDataObject());
         }
 
         /// <summary>
