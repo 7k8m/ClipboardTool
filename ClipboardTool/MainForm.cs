@@ -14,7 +14,9 @@ namespace ClipboardTool
     /// </summary>
     public partial class MainForm : Form
     {
-
+        /// <summary>
+        /// Text for Auto Format in the combobox.
+        /// </summary>
         private static readonly String AUTOFOMRAT = "Auto";
 
         /// <summary>
