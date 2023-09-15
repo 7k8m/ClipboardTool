@@ -49,7 +49,7 @@ namespace ClipboardTool
         private void timer_Tick(object sender, EventArgs e)
         {
             var clipboardData = Clipboard.GetDataObject();
-            if (_cbx_format.Text == AUTOFOMRAT)
+            if (_cbx_format.Text == AUTOFOMRAT)// Read content of clipboard depending on content of clipboard
                 _txtBox_clipboardContent.Text = ReadAsStringByDefault(clipboardData);
             else if (_cbx_format.Text == DataFormats.Html)
                 _txtBox_clipboardContent.Text = ReadAsFormat(clipboardData, DataFormats.Html);
