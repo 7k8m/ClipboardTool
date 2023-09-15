@@ -14,25 +14,33 @@ namespace ClipboardTool
     /// </summary>
     public partial class MainForm : Form
     {
-
+        /// <summary>
+        /// Timer to update shown clipboard content.
+        /// </summary>
         private Timer _timer = new Timer();
 
         public MainForm()
         {
             InitializeComponent();
 
+            // Initialize items in the combobox
             _cbx_format.Items.Add("Auto");
             _cbx_format.Items.Add(DataFormats.Html);
             _cbx_format.Items.Add(DataFormats.UnicodeText);
             _cbx_format.SelectedIndex = 0;
 
+            // Initialize timer
             _timer.Interval = 1000;
             _timer.Tick += new EventHandler(timer_Tick);
             _timer.Start();
 
-
         }
 
+        /// <summary>
+        /// Event handler for the timer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
         {
             var clipboardData = Clipboard.GetDataObject();
