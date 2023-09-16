@@ -161,6 +161,11 @@ namespace ClipboardTool
             return "";
         }
 
+        /// <summary>
+        /// Event handler for the combobox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _cbx_format_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateClipboardContentDisp();
