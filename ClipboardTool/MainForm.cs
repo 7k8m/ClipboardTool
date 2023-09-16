@@ -12,7 +12,7 @@ namespace ClipboardTool
         /// <summary>
         /// Text for Auto Format in the combobox.
         /// </summary>
-        private static readonly String AUTOFOMRAT = "Auto";
+        private static readonly String AUTOFORMAT = "Auto";
 
         /// <summary>
         /// Timer to catch misseed update of clipboard content.
@@ -50,7 +50,7 @@ namespace ClipboardTool
             InitializeComponent();
 
             // Initialize items in the combobox
-            _cbx_format.Items.Add(AUTOFOMRAT);
+            _cbx_format.Items.Add(AUTOFORMAT);
             _cbx_format.Items.Add(DataFormats.Html);
             _cbx_format.Items.Add(DataFormats.UnicodeText);
             _cbx_format.SelectedIndex = 0;
@@ -110,7 +110,7 @@ namespace ClipboardTool
         private void UpdateClipboardContentDisp()
         {
             var clipboardData = Clipboard.GetDataObject();
-            if (_cbx_format.Text == AUTOFOMRAT)// Read content of clipboard depending on content of clipboard
+            if (_cbx_format.Text == AUTOFORMAT)// Read content of clipboard depending on content of clipboard
                 _txtBox_clipboardContent.Text = ReadAsStringByDefault(clipboardData);
             else if (_cbx_format.Text == DataFormats.Html)
                 _txtBox_clipboardContent.Text = ReadAsFormat(clipboardData, DataFormats.Html);
