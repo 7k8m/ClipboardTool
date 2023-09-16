@@ -61,8 +61,9 @@ namespace ClipboardTool
             _cbx_format.Items.Add(DataFormats.Html);
             _cbx_format.Items.Add(DataFormats.UnicodeText);
             _cbx_format.SelectedIndex = 0;
-
+            
             UpdateClipboardContentDisp();
+            _txtBox_clipboardContent.Select(0, 0);//Supress unintentional selection of text
 
             AddClipboardFormatListener(Handle);
 
