@@ -88,7 +88,7 @@ namespace ClipboardTool
         {
             base.WndProc(ref m);
 
-            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_ALWAYS_TOP))
+            if ((m.Msg == WM_SYSCOMMAND) && (m.WParam == SYSMENU_ALWAYS_TOP))
             {
                 this.TopMost = !this.TopMost;
                 CheckMenuItem(
