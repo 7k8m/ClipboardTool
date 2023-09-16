@@ -28,21 +28,21 @@ namespace ClipboardTool
 
         #region Constants and methods for customizing System Menu
         // P/Invoke constants
-        private const int WM_SYSCOMMAND = 0x112;
-        private const int MF_STRING = 0x0;
-        private const int MF_SEPARATOR = 0x800;        
-        private const int MF_CHECKED = 0x00000008;
-        private const int MF_UNCHECKED = 0x00000000;
+        private const uint WM_SYSCOMMAND = 0x112;
+        private const uint MF_STRING = 0x0;
+        private const uint MF_SEPARATOR = 0x800;        
+        private const uint MF_CHECKED = 0x00000008;
+        private const uint MF_UNCHECKED = 0x00000000;
 
         // P/Invoke declarations
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool AppendMenu(IntPtr hMenu, int uFlags, int uIDNewItem, string lpNewItem);
+        private static extern bool AppendMenu(IntPtr hMenu, uint uFlags, UIntPtr uIDNewItem, string lpNewItem);
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern int CheckMenuItem(IntPtr hMenu, int uIDCheckItem, int uCheck);
+        private static extern int CheckMenuItem(IntPtr hMenu, uint uIDCheckItem, uint uCheck);
         // ID for the AlwaysTop item on the system menu
-        private int SYSMENU_ALWAYS_TOP = 0x1;
+        private uint SYSMENU_ALWAYS_TOP = 0x1;
         #endregion
 
         #region Constants and method for catch clipboard update       
