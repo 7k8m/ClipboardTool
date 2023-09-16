@@ -30,7 +30,7 @@ namespace ClipboardTool
         // P/Invoke constants
         private const uint WM_SYSCOMMAND = 0x112;
         private const uint MF_STRING = 0x0;
-        private const uint MF_SEPARATOR = 0x800;        
+        private const uint MF_SEPARATOR = 0x800;
         private const uint MF_CHECKED = 0x00000008;
         private const uint MF_UNCHECKED = 0x00000000;
 
@@ -42,11 +42,11 @@ namespace ClipboardTool
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int CheckMenuItem(IntPtr hMenu, uint uIDCheckItem, uint uCheck);
         // ID for the AlwaysTop item on the system menu
-        private uint SYSMENU_ALWAYS_TOP = 0x1;
+        private const uint SYSMENU_ALWAYS_TOP = 0x1;
         #endregion
 
         #region Constants and method for catch clipboard update       
-        public const int WM_CLIPBOARDUPDATE = 0x031D;       
+        public const int WM_CLIPBOARDUPDATE = 0x031D;
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool AddClipboardFormatListener(IntPtr hwnd);
@@ -167,5 +167,9 @@ namespace ClipboardTool
             return "";
         }
 
+        private void _cbx_format_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateClipboardContentDisp();
+        }
     }
 }

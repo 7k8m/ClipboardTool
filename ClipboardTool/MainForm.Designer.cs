@@ -54,6 +54,7 @@
             _cbx_format.Name = "_cbx_format";
             _cbx_format.Size = new System.Drawing.Size(242, 40);
             _cbx_format.TabIndex = 1;
+            _cbx_format.SelectedIndexChanged += _cbx_format_SelectedIndexChanged;
             // 
             // _lbl_readAs
             // 
