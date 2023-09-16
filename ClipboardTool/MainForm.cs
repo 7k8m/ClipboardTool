@@ -22,7 +22,7 @@ namespace ClipboardTool
         private static readonly String AUTOFOMRAT = "Auto";
 
         /// <summary>
-        /// Timer to update shown clipboard content.
+        /// Timer to catch misseed update of clipboard content.
         /// </summary>
         private Timer _timer = new Timer();
 
@@ -45,6 +45,13 @@ namespace ClipboardTool
         private int SYSMENU_ALWAYS_TOP = 0x1;
         #endregion
 
+        #region Constants and method for catch clipboard update       
+        public const int WM_CLIPBOARDUPDATE = 0x031D;       
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool AddClipboardFormatListener(IntPtr hwnd);
+        #endregion
+
         public MainForm()
         {
             InitializeComponent();
@@ -55,14 +62,17 @@ namespace ClipboardTool
             _cbx_format.Items.Add(DataFormats.UnicodeText);
             _cbx_format.SelectedIndex = 0;
 
+            UpdateClipboardContentDisp();
+
+            AddClipboardFormatListener(Handle);
+
             // Initialize timer
-            _timer.Interval = 1000;
+            _timer.Interval = 10000; // Low frequency because timer just catches missed clipboard updates.
             _timer.Tick += new EventHandler(timer_Tick);
             _timer.Start();
-
         }
 
-        #region Customizing System Menu
+        #region Touching WIN32 API
         protected override void OnHandleCreated(EventArgs e)
         {
             // Get a handle to a copy of this form's system (window) menu
@@ -81,10 +91,14 @@ namespace ClipboardTool
             {
                 this.TopMost = !this.TopMost;
                 CheckMenuItem(
-                    GetSystemMenu(this.Handle, false), 
-                    SYSMENU_ALWAYS_TOP, 
+                    GetSystemMenu(this.Handle, false),
+                    SYSMENU_ALWAYS_TOP,
                     this.TopMost ? MF_CHECKED : MF_UNCHECKED
                 );
+            }
+            if (m.Msg == WM_CLIPBOARDUPDATE)
+            {
+                UpdateClipboardContentDisp();
             }
         }
         #endregion
@@ -95,6 +109,11 @@ namespace ClipboardTool
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void timer_Tick(object sender, EventArgs e)
+        {
+            UpdateClipboardContentDisp();
+        }
+
+        private void UpdateClipboardContentDisp()
         {
             var clipboardData = Clipboard.GetDataObject();
             if (_cbx_format.Text == AUTOFOMRAT)// Read content of clipboard depending on content of clipboard
