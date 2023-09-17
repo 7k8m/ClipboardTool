@@ -36,13 +36,13 @@
             // _txtBox_clipboardContent
             // 
             _txtBox_clipboardContent.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            _txtBox_clipboardContent.Location = new System.Drawing.Point(13, 13);
-            _txtBox_clipboardContent.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            _txtBox_clipboardContent.Location = new System.Drawing.Point(7, 6);
+            _txtBox_clipboardContent.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             _txtBox_clipboardContent.Multiline = true;
             _txtBox_clipboardContent.Name = "_txtBox_clipboardContent";
             _txtBox_clipboardContent.ReadOnly = true;
             _txtBox_clipboardContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            _txtBox_clipboardContent.Size = new System.Drawing.Size(775, 375);
+            _txtBox_clipboardContent.Size = new System.Drawing.Size(414, 169);
             _txtBox_clipboardContent.TabIndex = 0;
             // 
             // _cbx_format
@@ -50,9 +50,10 @@
             _cbx_format.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             _cbx_format.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             _cbx_format.FormattingEnabled = true;
-            _cbx_format.Location = new System.Drawing.Point(546, 398);
+            _cbx_format.Location = new System.Drawing.Point(289, 186);
+            _cbx_format.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             _cbx_format.Name = "_cbx_format";
-            _cbx_format.Size = new System.Drawing.Size(242, 40);
+            _cbx_format.Size = new System.Drawing.Size(132, 23);
             _cbx_format.TabIndex = 1;
             _cbx_format.SelectedIndexChanged += _cbx_format_SelectedIndexChanged;
             // 
@@ -60,21 +61,22 @@
             // 
             _lbl_readAs.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             _lbl_readAs.AutoSize = true;
-            _lbl_readAs.Location = new System.Drawing.Point(430, 401);
+            _lbl_readAs.Location = new System.Drawing.Point(230, 189);
+            _lbl_readAs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             _lbl_readAs.Name = "_lbl_readAs";
-            _lbl_readAs.Size = new System.Drawing.Size(110, 32);
+            _lbl_readAs.Size = new System.Drawing.Size(55, 15);
             _lbl_readAs.TabIndex = 2;
             _lbl_readAs.Text = "Read As :";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(434, 220);
             Controls.Add(_lbl_readAs);
             Controls.Add(_cbx_format);
             Controls.Add(_txtBox_clipboardContent);
-            Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             Name = "MainForm";
             Text = "ClipboardTool";
             ResumeLayout(false);
